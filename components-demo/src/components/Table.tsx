@@ -12,25 +12,30 @@ import {
 
 type Person = {
   title: string;
-  price: string;
+  price: number;
   stock: number;
 };
 
 const defaultData: Person[] = [
   {
-    title: "tanner",
-    price: "linsley",
-    stock: 24,
+    title: "HDD Seagate 2TB",
+    price: 200,
+    stock: 20,
   },
   {
-    title: "tandy",
-    price: "miller",
-    stock: 40,
+    title: "ADATA RAM 8GB",
+    price: 120,
+    stock: 50,
   },
   {
-    title: "joe",
-    price: "dirte",
-    stock: 45,
+    title: "ASUS ZenBook",
+    price: 1200,
+    stock: 4,
+  },
+  {
+    title: "Acer Predator",
+    price: 1500,
+    stock: 2,
   },
 ];
 
@@ -43,7 +48,7 @@ const columns = [
   columnHelper.accessor((row) => row.price, {
     id: "price",
     cell: (info) => <i>{info.getValue()}</i>,
-    header: () => <span>Last Name</span>,
+    header: () => <span>Price</span>,
   }),
   columnHelper.accessor("stock", {
     header: () => "Stock",
@@ -53,9 +58,8 @@ const columns = [
 
 function Table() {
   const [data, setData] = React.useState(() => [...defaultData]);
-  // const rerender = React.useReducer(() => ({}), {})[1];
-  const rerender = () => {
-    const key: any = "title";
+  const rerender = (keyName: string) => {
+    const key: any = keyName;
     const copyData = structuredClone(data);
     const sorted = copyData.sort((item1: Person[], item2: Person[]) =>
       item1[key] > item2[key] ? 1 : -1
@@ -76,7 +80,7 @@ function Table() {
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <th key={header.id}>
+                <th onClick={() => rerender(header.id)} key={header.id}>
                   {header.isPlaceholder
                     ? null
                     : flexRender(
@@ -99,27 +103,8 @@ function Table() {
             </tr>
           ))}
         </tbody>
-        <tfoot>
-          {table.getFooterGroups().map((footerGroup) => (
-            <tr key={footerGroup.id}>
-              {footerGroup.headers.map((header) => (
-                <th key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.footer,
-                        header.getContext()
-                      )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </tfoot>
       </table>
       <div className="h-4" />
-      <button onClick={() => rerender()} className="border p-2">
-        Rerender
-      </button>
     </div>
   );
 }
