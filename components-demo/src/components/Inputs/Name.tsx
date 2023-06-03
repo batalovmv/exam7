@@ -12,7 +12,7 @@ const Name = (props: Props) => {
         <label>
           <input
             className="input"
-            placeholder="Введите количество :"
+            placeholder="Введите название :"
             type="text"
             value={props.name}
             onChange={(e) => props.addData(e.target.value)}

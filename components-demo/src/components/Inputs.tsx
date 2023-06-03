@@ -23,7 +23,7 @@ const Inputs = (props: Props) => {
     if (Number(text) < 0) {
       alert("меньше нуля");
     } else {
-      setPrice(text);
+      setStock(text);
     }
   };
 
