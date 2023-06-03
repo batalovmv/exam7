@@ -53,11 +53,7 @@ const columns = [
     header: () => "Stock",
     cell: (info) => (
       <i>
-        {info.renderValue()}{" "}
-        <button
-          onClick={console.log(info.row.id)}
-          className="reduce-button"
-        ></button>
+        {info.renderValue()} <button className="reduce-button"></button>
       </i>
     ),
   }),
