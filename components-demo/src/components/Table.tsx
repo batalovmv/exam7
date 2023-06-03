@@ -117,7 +117,7 @@ function Table() {
     const key: any = keyName;
     const copyData = structuredClone(data);
     const sorted = copyData.sort((item1: Person[], item2: Person[]) =>
-      item1[key] > item2[key] ? 1 : -1
+      item1[key] < item2[key] ? 1 : -1
     );
     setData(sorted);
   };
@@ -150,39 +150,50 @@ function Table() {
     getCoreRowModel: getCoreRowModel(),
   });
 
+  const startTable = () => {
+    if (defaultData.length === 0) {
+      return <div className="no-products">Нет доступных товаров</div>;
+    } else {
+      return (
+        <table>
+          <thead>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <th onClick={() => rerender(header.id)} key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row) => (
+              <tr key={row.id}>
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+
+                {setButton(Number(row.id))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      );
+    }
+  };
+
   return (
     <div className="p-2">
-      <table>
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th onClick={() => rerender(header.id)} key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
+      {startTable()}
 
-              {setButton(Number(row.id))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
       <div className="h-4" />
       <Inputs addNewItem={addNewItem} />
     </div>
