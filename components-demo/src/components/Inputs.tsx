@@ -7,30 +7,31 @@ type Props = {
 };
 const Inputs = (props: Props) => {
   const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
-  const [stock, setStock] = useState(0);
+  const [price, setPrice] = useState("");
+  const [stock, setStock] = useState("");
   const [item, setItem] = useState({});
   const changeName = (text: string) => {
     setName(text);
     console.log(name);
   };
-  const changePrice = (text: number) => {
+  const changePrice = (text: string) => {
     setPrice(text);
     console.log(price);
   };
-  const changeStock = (text: number) => {
+  const changeStock = (text: string) => {
     setStock(text);
     console.log(stock);
   };
-  // const makeNewItem = () => {
-  //   const newItem = { name: name, price: price, stock: stock };
-  //   setItem(newItem);
-  // };
+
   const onSubmit = (event) => {
     event.preventDefault();
-    // makeNewItem(name, price, stock);
   };
-  const pushItem = () => {};
+  const clear = () => {
+    setName("");
+    setPrice("");
+    setStock("");
+  };
+
   return (
     <>
       Добавать новый продукт
@@ -40,6 +41,7 @@ const Inputs = (props: Props) => {
       <button
         onSubmit={onSubmit}
         onClick={() => {
+          clear();
           props.addNewItem({ title: name, price: price, stock: stock });
         }}
         className="reduce-button"

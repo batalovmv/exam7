@@ -8,7 +8,7 @@ import {
 } from "react";
 type Props = {
   addData: any;
-  stock: number;
+  stock: string;
   onSubmit: FormEventHandler;
 };
 
@@ -20,7 +20,7 @@ const Stock = (props: Props) => {
         <label>
           Введите имя продукта:
           <input
-            type="text"
+            type="number"
             value={props.stock}
             onChange={(e) => props.addData(e.target.value)}
           />

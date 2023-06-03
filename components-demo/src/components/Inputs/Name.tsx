@@ -1,10 +1,4 @@
-import {
-  ChangeEvent,
-  ChangeEventHandler,
-  MouseEventHandler,
-  FormEventHandler,
-  useState,
-} from "react";
+import { FormEventHandler } from "react";
 type Props = {
   addData: any;
   name: string;

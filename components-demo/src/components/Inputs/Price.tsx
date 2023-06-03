@@ -7,7 +7,7 @@ import {
 } from "react";
 type Props = {
   addData: any;
-  price: number;
+  price: string;
   onSubmit: FormEventHandler;
 };
 const Price = (props: Props) => {
@@ -18,7 +18,7 @@ const Price = (props: Props) => {
         <label>
           Введите цену продукта :
           <input
-            type="text"
+            type="number"
             value={props.price}
             onChange={(e) => props.addData(e.target.value)}
           />

@@ -58,9 +58,59 @@ const columns = [
 
 function Table() {
   const [data, setData] = React.useState(() => [...defaultData]);
+  const copyData = structuredClone(data);
   const addNewItem = (item: Person) => {
-    const copyData = structuredClone(data);
-    copyData.push(item);
+    if (item.title !== "" && item.price !== "" && item.stock !== "") {
+      const found = data.filter((e) => e.title === item.title);
+      if (found.length > 0) {
+        copyData.forEach((element) => {
+          if (element.title === item.title) {
+            if (element.stock === "нет товара") {
+              element.stock = Number(item.stock);
+            } else {
+              element.stock = Number(element.stock) + Number(item.stock);
+            }
+            element.price = item.price;
+          }
+        });
+      } else {
+        copyData.push(item);
+      }
+    } else if (item.title !== "" && item.price !== "" && item.stock === "") {
+      const found = data.filter((e) => e.title === item.title);
+      if (found.length > 0) {
+        copyData.forEach((element) => {
+          if (element.title === item.title) {
+            if (element.stock === "нет товара") {
+              element.stock = Number(item.stock);
+            } else {
+              element.stock = Number(element.stock) + Number(item.stock);
+            }
+            element.price = item.price;
+          }
+        });
+      } else {
+        copyData.push(item);
+      }
+    } else if (item.title !== "" && item.price === "" && item.stock !== "") {
+      const found = data.filter((e) => e.title === item.title);
+      if (found.length > 0) {
+        copyData.forEach((element) => {
+          if (element.title === item.title) {
+            if (element.stock === "нет товара") {
+              element.stock = Number(item.stock);
+            } else {
+              element.stock = Number(element.stock) + Number(item.stock);
+            }
+            element.price = element.price;
+          }
+        });
+      } else {
+        copyData.push(item);
+      }
+    } else {
+      alert("Введены неправильные данные");
+    }
     setData(copyData);
   };
   const rerender = (keyName: string) => {
