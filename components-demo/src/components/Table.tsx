@@ -51,11 +51,7 @@ const columns = [
   }),
   columnHelper.accessor("stock", {
     header: () => "Stock",
-    cell: (info) => (
-      <i>
-        {info.renderValue()} <button className="reduce-button"></button>
-      </i>
-    ),
+    cell: (info) => <i>{info.renderValue()}</i>,
   }),
 ];
 
@@ -71,8 +67,25 @@ function Table() {
   };
   const changeStock = (id: number) => {
     const copyData = structuredClone(data);
-    copyData[id].stock = copyData[id].stock - 1;
+    if (copyData[id].stock === 1 || copyData[id].stock == "нет товара") {
+      copyData[id].stock = "нет товара";
+    } else {
+      copyData[id].stock -= 1;
+    }
+
     setData(copyData);
+  };
+  const setButton = (id: number) => {
+    const copyData = structuredClone(data);
+    if (copyData[id].stock === "нет товара") {
+    } else {
+      return (
+        <button
+          onClick={() => changeStock(Number(id))}
+          className="reduce-button"
+        ></button>
+      );
+    }
   };
 
   const table = useReactTable({
@@ -104,10 +117,12 @@ function Table() {
           {table.getRowModel().rows.map((row) => (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <td onClick={() => changeStock(Number(row.id))} key={cell.id}>
+                <td key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
+
+              {setButton(Number(row.id))}
             </tr>
           ))}
         </tbody>
