@@ -11,15 +11,20 @@ const Inputs = (props: Props) => {
   const [stock, setStock] = useState("");
   const changeName = (text: string) => {
     setName(text);
-    console.log(name);
   };
   const changePrice = (text: string) => {
-    setPrice(text);
-    console.log(price);
+    if (Number(text) < 0) {
+      alert("меньше нуля");
+    } else {
+      setPrice(text);
+    }
   };
   const changeStock = (text: string) => {
-    setStock(text);
-    console.log(stock);
+    if (Number(text) < 0) {
+      alert("меньше нуля");
+    } else {
+      setPrice(text);
+    }
   };
 
   const onSubmit = (event) => {
@@ -46,7 +51,7 @@ const Inputs = (props: Props) => {
         className="add-button"
         type="submit"
       >
-        Создать
+        Добавить
       </button>
     </>
   );

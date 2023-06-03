@@ -20,7 +20,7 @@ const Stock = (props: Props) => {
         <label>
           <input
             className="input"
-            placeholder="Введите имя продукта:"
+            placeholder="Введите количество"
             type="number"
             value={props.stock}
             onChange={(e) => props.addData(e.target.value)}
