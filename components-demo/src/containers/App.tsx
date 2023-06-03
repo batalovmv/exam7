@@ -7,7 +7,6 @@ const App = () => {
   return (
     <div className="game">
       <Table />
-      <Inputs />
     </div>
   );
 };

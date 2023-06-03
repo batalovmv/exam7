@@ -18,7 +18,7 @@ const Stock = (props: Props) => {
       {" "}
       <form onSubmit={(e) => props.onSubmit(e)}>
         <label>
-          Enter your name:
+          Введите имя продукта:
           <input
             type="text"
             value={props.stock}

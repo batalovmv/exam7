@@ -1,5 +1,6 @@
 import * as React from "react";
 import ReactDOM from "react-dom/client";
+import Inputs from "./Inputs";
 
 // import "./index.css";
 
@@ -46,7 +47,7 @@ const columns = [
   }),
   columnHelper.accessor((row) => row.price, {
     id: "price",
-    cell: (info) => <i>{info.getValue()}</i>,
+    cell: (info) => <i>{info.renderValue()}</i>,
     header: () => <span>Price</span>,
   }),
   columnHelper.accessor("stock", {
@@ -57,6 +58,11 @@ const columns = [
 
 function Table() {
   const [data, setData] = React.useState(() => [...defaultData]);
+  const addNewItem = (item: Person) => {
+    const copyData = structuredClone(data);
+    copyData.push(item);
+    setData(copyData);
+  };
   const rerender = (keyName: string) => {
     const key: any = keyName;
     const copyData = structuredClone(data);
@@ -128,6 +134,7 @@ function Table() {
         </tbody>
       </table>
       <div className="h-4" />
+      <Inputs addNewItem={addNewItem} />
     </div>
   );
 }

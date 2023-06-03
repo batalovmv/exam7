@@ -11,13 +11,12 @@ type Props = {
   onSubmit: FormEventHandler;
 };
 const Name = (props: Props) => {
-  const [name, setName] = useState("");
   return (
     <>
       {" "}
       <form onSubmit={(e) => props.onSubmit(e)}>
         <label>
-          Enter your name:
+          Введите количество :
           <input
             type="text"
             value={props.name}
@@ -25,7 +24,6 @@ const Name = (props: Props) => {
           />
         </label>
       </form>
-      )
     </>
   );
 };
