@@ -1,41 +1,7 @@
-.addButton,
-.remove-btn {
-  width: 40px;
-  height: 40px;
+.reduce-button {
+  width: 20px;
+  height: 20px;
   border-radius: 10px;
   margin-left: 10px;
   cursor: pointer;
-}
-.game {
-  text-align: center;
-}
-.list-item {
-  max-width: 70vh;
-  margin: 10px auto;
-}
-.item {
-  display: flex;
-  justify-content: space-between;
-  height: 50px;
-  background-color: slategray;
-  border-radius: 10px;
-  margin: 5px;
-}
-.item-name {
-  width: 70%;
-  padding-top: 10px;
-}
-.item-price {
-  padding-top: 10px;
-}
-.options-bar {
-  width: 200px;
-}
-.Inputs {
-  display: flex;
-  justify-content: center;
-}
-.PieChart {
-  max-width: 400px;
-  max-height: 400px;
 }

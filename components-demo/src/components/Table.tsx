@@ -40,7 +40,6 @@ const defaultData: Person[] = [
 ];
 
 const columnHelper = createColumnHelper<Person>();
-
 const columns = [
   columnHelper.accessor("title", {
     cell: (info) => info.getValue(),
@@ -52,7 +51,15 @@ const columns = [
   }),
   columnHelper.accessor("stock", {
     header: () => "Stock",
-    cell: (info) => info.renderValue(),
+    cell: (info) => (
+      <i>
+        {info.renderValue()}{" "}
+        <button
+          onClick={console.log(info.row.id)}
+          className="reduce-button"
+        ></button>
+      </i>
+    ),
   }),
 ];
 
@@ -65,6 +72,11 @@ function Table() {
       item1[key] > item2[key] ? 1 : -1
     );
     setData(sorted);
+  };
+  const changeStock = (id: number) => {
+    const copyData = structuredClone(data);
+    copyData[id].stock = copyData[id].stock - 1;
+    setData(copyData);
   };
 
   const table = useReactTable({
@@ -96,7 +108,7 @@ function Table() {
           {table.getRowModel().rows.map((row) => (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>
+                <td onClick={() => changeStock(Number(row.id))} key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
