@@ -9,7 +9,6 @@ const Inputs = (props: Props) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
-  const [item, setItem] = useState({});
   const changeName = (text: string) => {
     setName(text);
     console.log(name);
@@ -44,9 +43,11 @@ const Inputs = (props: Props) => {
           clear();
           props.addNewItem({ title: name, price: price, stock: stock });
         }}
-        className="reduce-button"
+        className="add-button"
         type="submit"
-      ></button>
+      >
+        Создать
+      </button>
     </>
   );
 };

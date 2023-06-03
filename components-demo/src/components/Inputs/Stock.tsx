@@ -18,8 +18,9 @@ const Stock = (props: Props) => {
       {" "}
       <form onSubmit={(e) => props.onSubmit(e)}>
         <label>
-          Введите имя продукта:
           <input
+            className="input"
+            placeholder="Введите имя продукта:"
             type="number"
             value={props.stock}
             onChange={(e) => props.addData(e.target.value)}

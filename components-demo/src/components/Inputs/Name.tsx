@@ -10,8 +10,9 @@ const Name = (props: Props) => {
       {" "}
       <form onSubmit={(e) => props.onSubmit(e)}>
         <label>
-          Введите количество :
           <input
+            className="input"
+            placeholder="Введите количество :"
             type="text"
             value={props.name}
             onChange={(e) => props.addData(e.target.value)}

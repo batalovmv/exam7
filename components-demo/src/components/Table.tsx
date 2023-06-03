@@ -13,8 +13,8 @@ import {
 
 type Person = {
   title: string;
-  price: number;
-  stock: number;
+  price: number | string;
+  stock: number | string;
 };
 
 const defaultData: Person[] = [

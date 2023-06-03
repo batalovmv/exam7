@@ -16,8 +16,9 @@ const Price = (props: Props) => {
       {" "}
       <form onSubmit={(e) => props.onSubmit(e)}>
         <label>
-          Введите цену продукта :
           <input
+            className="input"
+            placeholder="Введите цену продукта :"
             type="number"
             value={props.price}
             onChange={(e) => props.addData(e.target.value)}

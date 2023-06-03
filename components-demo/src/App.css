@@ -5,3 +5,15 @@
   margin-left: 10px;
   cursor: pointer;
 }
+.p-2 {
+  width: 500px;
+}
+.add-button {
+  width: 100px;
+  height: 30px;
+  margin: 20px 0;
+  cursor: pointer;
+}
+.input {
+  width: 100%;
+}
